@@ -109,7 +109,8 @@ if uploaded_file is not None:
             
         df['day_of_the_week'] = dia
         
-        week_df = df.groupby('day_of_the_week').sum().reset_index()
+        numeric_columns = df.select_dtypes(include='number').columns
+        week_df = df.groupby('day_of_the_week')[numeric_columns].sum().reset_index()
         return week_df
 
     if action:
