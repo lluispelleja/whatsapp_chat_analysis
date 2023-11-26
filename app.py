@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 from wordcloud import WordCloud, STOPWORDS
 from collections import Counter
 import plotly.express as px
