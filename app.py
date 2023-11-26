@@ -58,7 +58,6 @@ if uploaded_file is not None:
         end_date = end_date + timedelta(days=1)
     with col3:
         st.subheader("")
-        st.write("")
         action = st.button(label='View Results')
         
         
