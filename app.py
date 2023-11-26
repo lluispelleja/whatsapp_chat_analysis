@@ -13,7 +13,7 @@ st.set_page_config(layout="wide")
 st.markdown("<h1 style='text-align: center;'>ANALYSE YOUR WHATSAPP CHAT</h1>", unsafe_allow_html=True)
 st.subheader("In this web application you can import your Whatsapp chat and analyse all the data it contains filtering by the dates you want to analyse.")
 st.write("")
-video = 'https://drive.google.com/file/d/1_4d19noJUL_shCEpJNAudZwcY1W6X28W/view?usp=sharing'
+video = 'https://www.youtube.com/watch?v=TL9fq-EYlKg'
 st.subheader("In order to analyze your WhatsApp chat, you must import the entire conversation in .txt format. You can see how to export your conversation in the following [video]({}).".format(video))
 st.write("No chat data is sent to a server! All codes are executed locally in your browser.")
 
@@ -37,6 +37,7 @@ def get_df(file):
             data.append([date, time, username, message])
 
     df = pd.DataFrame(data, columns=['Date', 'Time', 'Username', 'Message'])
+    
     df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%y')
     df['Date'] = df['Date'].dt.date
     
@@ -47,7 +48,7 @@ if uploaded_file is not None:
     total_df = get_df(uploaded_file)
     max_index = len(total_df) - 1
     min_date = total_df['Date'][0]
-    max_date = date.today()
+    max_date = total_df['Date'].iloc[-1]
     col1, col2, col3, col4 = st.columns([0.5,0.5,1,1.5])
     
     with col1:
@@ -88,6 +89,7 @@ if uploaded_file is not None:
     
     def get_messages(df):
         df_persona = df.groupby('Username').count().reset_index()
+        df_persona.sort_values(by='Message', ascending=False)
         return df_persona
 
     def get_daily_mess(df):
@@ -185,7 +187,7 @@ if uploaded_file is not None:
                     'x':0.5,
                     'xanchor': 'center'},
             font=dict(size=17))
-        fig.update_xaxes(title_text='Date', tickangle=45, nticks=35)
+        fig.update_xaxes(title_text='Week Day', tickangle=45, nticks=35)
         fig.update_yaxes(title_text='# Mensajes')
         st.plotly_chart(fig, theme='streamlit', use_container_width=True)
 
