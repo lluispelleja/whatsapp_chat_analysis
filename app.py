@@ -57,7 +57,7 @@ if uploaded_file is not None:
         end_date = st.date_input(label="Select an end date", value=max_date, max_value=max_date, format="DD/MM/YYYY")
         end_date = end_date + timedelta(days=1)
     with col3:
-        st.title("")
+        st.subheader("")
         action = st.button(label='View Results')
         
         
