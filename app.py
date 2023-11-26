@@ -94,8 +94,7 @@ if uploaded_file is not None:
 
     def get_daily_mess(df):
         df['# Mensajes por día'] = 1
-        date_df = df.groupby('Date').sum().count()
-        date_df.reset_index(inplace=True)
+        date_df = df.groupby('Date').sum().count().reset_index()
         return date_df
 
     def get_weekly_mes(df):
@@ -110,9 +109,7 @@ if uploaded_file is not None:
             
         df['day_of_the_week'] = dia
         
-        week_df = df.groupby('day_of_the_week').sum().count()
-        week_df.reset_index(inplace=True)
-        week_df.sort_values(by='# Mensajes por día', ascending=True)
+        week_df = df.groupby('day_of_the_week').sum().count().reset_index()
         return week_df
 
     if action:
