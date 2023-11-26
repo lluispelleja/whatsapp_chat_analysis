@@ -88,15 +88,13 @@ if uploaded_file is not None:
         return emoji_df
     
     def get_messages(df):
-        df_persona = df.groupby('Username').count()
-        df_persona.reset_index()
-        df_persona.sort_values(by='Message', ascending=False)
+        df_persona = df.groupby('Username').count().reset_index()
+
         return df_persona
 
     def get_daily_mess(df):
         df['# Mensajes por día'] = 1
-        date_df = df.groupby('Date').sum().count()
-        date_df.reset_index()
+        date_df = df.groupby('Date').sum().reset_index()
         return date_df
 
     def get_weekly_mes(df):
