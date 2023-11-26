@@ -165,25 +165,13 @@ if uploaded_file is not None:
             pass
         
         date_df = get_daily_mess(df)
-        fig = px.line(date_df, x='Date', y='# Mensajes por día')
-        fig.update_layout(
-            title={'text': 'Progression of number of message by time',
-                    'y':0.96,
-                    'x':0.5,
-                    'xanchor': 'center'},
-            font=dict(size=17))
+        fig = px.line(date_df, x='Date', y='# Mensajes por día', title='Progression of number of message by time')
         fig.update_xaxes(title_text='Date', tickangle=45, nticks=35)
         fig.update_yaxes(title_text='# Mensajes')
         st.plotly_chart(fig, theme='streamlit', use_container_width=True)
 
         week_df = get_weekly_mes(df)
-        fig = px.bar(week_df, x='day_of_the_week', y='# Mensajes por día')
-        fig.update_layout(
-            title={'text': 'Number of messages by weekday',
-                    'y':0.96,
-                    'x':0.5,
-                    'xanchor': 'center'},
-            font=dict(size=17))
+        fig = px.bar(week_df, x='day_of_the_week', y='# Mensajes por día', title='Number of messages by weekday')
         fig.update_xaxes(title_text='Week Day', tickangle=45, nticks=35)
         fig.update_yaxes(title_text='# Mensajes')
         st.plotly_chart(fig, theme='streamlit', use_container_width=True)
