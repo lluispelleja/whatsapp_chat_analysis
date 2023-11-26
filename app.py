@@ -52,12 +52,13 @@ if uploaded_file is not None:
     col1, col2, col3, col4 = st.columns([0.5,0.5,1,1.5])
     
     with col1:
-        start_date = st.date_input(label="Select a start date",value=min_date ,min_value=min_date)
+        start_date = st.date_input(label="Select a start date", value=min_date, min_value=min_date, format="DD/MM/YYYY")
     with col2:
-        end_date = st.date_input(label="Select an end date",value=max_date, max_value=max_date)
+        end_date = st.date_input(label="Select an end date", value=max_date, max_value=max_date, format="DD/MM/YYYY")
         end_date = end_date + timedelta(days=1)
     with col3:
-        st.title("")
+        st.subheader("")
+        st.write("")
         action = st.button(label='View Results')
         
         
